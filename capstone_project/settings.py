@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'capstone_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'name-of-database',  
+        'NAME': 'influencer_portal',  
         'USER': 'postgres', 
         'PASSWORD': 'Z@1d#B@ss', 
         'HOST': 'localhost',   
