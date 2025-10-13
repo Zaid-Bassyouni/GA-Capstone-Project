@@ -17,20 +17,29 @@ class SignUpView(CreateView):
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')   
 
-    def form_valid(self, form):
-        resp = super().form_valid(form)
-        messages.success(self.request, "Account created! Please log in.")
-        return resp
+#     def form_valid(self, form):
+#         resp = super().form_valid(form)
+#         messages.success(self.request, "Account created! Please log in.")
+#         return resp
 
 
-def logout_view(request):
-   LogoutView(request)  # This clears the user’s session
-   return redirect('login')  # redirect to your login page name
+# def logout_view(request):
+#    LogoutView(request)  # This clears the user’s session
+#    return redirect('login')  # redirect to your login page name
     
 
 # **************************************************************************
 
-
+def signup(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account created! Please log in.")
+            return redirect("login")  # built-in auth view name
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/signup.html", {"form": form})
 
 def homepage(request):
     influencers = InfluencerProfile.objects.all()
