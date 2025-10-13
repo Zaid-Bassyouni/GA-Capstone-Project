@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%block title%} <title></title> {% endblock %}
+</head>
+<body>
+
+    <nav>
+  <a href="{% url 'homepage' %}">Home</a>                      | {% comment %} Homepage View {% endcomment %}
+  <a href="{% url 'profile_details' %}">My Profile</a>         | {% comment %} Read {% endcomment %}
+  <a href ="{% url 'profile_create' %}">Create Profile</a>     | {% comment %} CREATE {% endcomment %}
+  <a href="{% url 'profile_update' %}"> Update My Profile </a> | {% comment %} Update {% endcomment %}
+  <a href="{% url 'profile_delete' %}"> Delete My Profile </a> | {% comment %} Delete {% endcomment %}
+    </nav>
+
+    {%block content%}
+        {%endblock%}
+    
+
+    
+</body>
+</html>

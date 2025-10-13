@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}<title>My Profile</title>{% endblock %}
+{% block content %}
+  {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+  <h1>{{ profile.display_name }}</h1>
+  <p><strong>Email:</strong> {{ profile.contact_email }}</p>
+  <p><strong>Country:</strong> {{ profile.country }}</p>
+  <p><strong>Public:</strong> {{ profile.is_public }}</p>
+  <p><strong>Active:</strong> {{ profile.is_active }}</p>
+  <p><strong>Bio:</strong><br>{{ profile.bio|linebreaks }}</p>
+  <p>
+    <a href="{% url 'profile_update' %}">Edit</a> |
+    <a href="{% url 'profile_delete' %}">Delete</a>
+  </p>
+{% endblock %}
