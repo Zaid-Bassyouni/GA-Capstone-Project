@@ -1,17 +1,15 @@
 {% extends "base.html" %}
-
 {% block title %}<title>Home</title>{% endblock %}
 
 {% block content %}
-  <h1> Homepage</h1>
+  <h1>Homepage</h1>
   <p>This is just a smoke test.</p>
 
   <h3>Influencers</h3>
-  <ul>
-    {% for name in influencers %}
-      <li>{{ name }}</li>
-    {% empty %}
-      <li>No influencers yet.</li>
-    {% endfor %}
-  </ul>
+ <ul>
+  {% for p in influencers %}
+    <li><a href="{% url 'influencer_details' p.influencer_id %}">{{ p.display_name }}</a></li>
+  {% empty %}<li>No influencers yet.</li>{% endfor %}
+</ul>
+
 {% endblock %}

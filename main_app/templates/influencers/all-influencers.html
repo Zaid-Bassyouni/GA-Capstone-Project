@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}<title>All Influencers</title>{% endblock %}
+
+{% block content %}
+  <h1>🌍 All Influencers</h1>
+  <p>Explore all registered influencer profiles below.</p>
+
+  {% if profiles %}
+    <table border="1" cellspacing="0" cellpadding="8">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Display Name</th>
+          <th>Email</th>
+          <th>Country</th>
+          <th>Status</th>
+          <th>View Profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in profiles %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ p.display_name }}</td>
+            <td>{{ p.contact_email }}</td>
+            <td>{{ p.country }}</td>
+            <td>
+              {% if p.is_active %}
+                ✅ Active
+              {% else %}
+                ❌ Inactive
+              {% endif %}
+              {% if not p.is_public %}
+                <br><small>(Private)</small>
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'influencer_details' p.influencer_id %}">
+                View
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No influencers found yet.</p>
+  {% endif %}
+
+  <hr>
+  <a href="{% url 'create_influencer' %}">➕ Create New Profile</a>
+{% endblock %}

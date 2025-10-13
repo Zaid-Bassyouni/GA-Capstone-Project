@@ -8,8 +8,13 @@ from . import views
 urlpatterns = [
     path('' , views.homepage , name='homepage'),
 
-    path('influencer/profile/', views.profile_details, name='profile_details'),   # R
-    path('influencer/profile/create/', views.profile_create, name='profile_create'),  # C
-    path('influencer/profile/edit/', views.update_profile, name='profile_update'),  # U
-    path('influencer/profile/delete/', views.delete_influencer, name='profile_delete') # D
+    # path('logout/', views.logout_view, name='logout'),
+     # READ
+    path('influencers/', views.influencer_list, name='influencer_list'),
+    path('influencer/<int:id>/profile/', views.profile_details, name='influencer_details'),
+
+
+    path('influencer/profile/create/', views.create_influencer, name='create_influencer'),  # C
+    path('influencer/profile/edit/<int:id>/', views.update_influencer, name='profile_update'), # U
+    path('influencer/profile/delete/<int:id>', views.delete_influencer, name='profile_delete') # D
 ]
