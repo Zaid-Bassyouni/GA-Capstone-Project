@@ -1,15 +1,27 @@
 {% extends "base.html" %}
-{% block title %}<title> My Page </title>{% endblock %}
+{% block title %}<title>My Profile</title>{% endblock %}
+
 {% block content %}
-  {% for message in messages %}<p>{{ message }}</p>{% endfor %}
-  <h1> {{ profile.display_name }}</h1>
-  <p><strong>Email:</strong> {{ profile.contact_email }}</p>
-  <p><strong>Country:</strong> {{ profile.country }}</p>
-  <p><strong>Public:</strong> {{ profile.is_public }}</p>
-  <p><strong>Active:</strong> {{ profile.is_active }}</p>
-  <p><strong>Bio:</strong><br>{{ profile.bio|linebreaks }}</p>
-  <p>
-  <a href="{% url 'profile_update' profile.influencer_id %}">Edit</a> |
-  <a href="{% url 'profile_delete' profile.influencer_id %}">Delete</a>
-</p>
+  <h1>{{ profile.display_name }}</h1>
+
+ 
+
+  <section class="card">
+    <p><strong>Email:</strong> {{ profile.contact_email }}</p>
+    <p><strong>Country:</strong> {{ profile.country }}</p>
+    <p><strong>Public:</strong> {% if profile.is_public %}Yes{% else %}No{% endif %}</p>
+    <p><strong>Active:</strong> {% if profile.is_active %}Active{% else %}Inactive{% endif %}</p>
+  </section>
+
+  {% if profile.bio %}
+    <hr class="divider">
+    <section class="card">
+      <h2>Bio</h2>
+      <p>{{ profile.bio|linebreaks }}</p>
+    </section>
+  {% endif %}
+   <p>
+    <a href="{% url 'profile_update' profile.influencer_id %}" class="btn">Edit</a>
+    <a href="{% url 'profile_delete' profile.influencer_id %}" class="btn btn-danger">Delete</a>
+  </p>
 {% endblock %}
