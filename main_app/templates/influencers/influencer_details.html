@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}<title> My Profile</title>{% endblock %}
+{% block title %}<title> Influencer Page </title>{% endblock %}
 {% block content %}
   {% for message in messages %}<p>{{ message }}</p>{% endfor %}
   <h1> {{ profile.display_name }}</h1>
@@ -9,7 +9,6 @@
   <p><strong>Active:</strong> {{ profile.is_active }}</p>
   <p><strong>Bio:</strong><br>{{ profile.bio|linebreaks }}</p>
   <p>
-  <a href="{% url 'profile_update' profile.influencer_id %}">Edit</a> |
-  <a href="{% url 'profile_delete' profile.influencer_id %}">Delete</a>
+  
 </p>
 {% endblock %}
