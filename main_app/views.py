@@ -81,7 +81,9 @@ def create_influencer(request):
     if request.method == 'POST':
         form = InfluencerForm(request.POST)
         if form.is_valid():
-            profile = form.save()          # no user linking
+            profile = form.save(commit=False)  
+            profile.user = request.user         
+            profile.save()                      
             return redirect('influencer_details', id=profile.influencer_id)
     else:
         form = InfluencerForm()
@@ -98,6 +100,7 @@ def update_influencer(request, id):
     else:
         form = InfluencerForm(instance=influencer)
     return render(request, 'influencers/influencer_form.html', {'form': form})
+
 @login_required
 def delete_influencer(request, id):
     profile = get_object_or_404(InfluencerProfile, influencer_id=id)

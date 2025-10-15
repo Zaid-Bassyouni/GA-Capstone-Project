@@ -1,0 +1,323 @@
+/* ===== reset ===== */
+* {
+    box-sizing: border-box
+}
+
+html,body{height: 100%;}
+body {
+    min-height: 100svh;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+    display: block
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit
+}
+
+/* ===== tokens ===== */
+:root {
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    /* dark is now default */
+    --bg: #0f1522;
+    --panel: #141b2b;
+    --text: #e7ecf6;
+    --muted: #a5b1c7;
+    --border: #243149;
+    --accent: #60a5fa;
+    --accent-600: #4b8de0;
+
+    --radius: 10px;
+    --shadow: 0 8px 22px rgba(0, 0, 0, .35);
+    --container: 1000px;
+}
+
+/* ===== base ===== */
+body {
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 16px;
+    flex: 1;
+}
+
+
+
+
+/* ===== header & nav ===== */
+.site-header { 
+    position: sticky;
+    top: 0;
+    /* z-index: 10; */
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+}
+
+.heder-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 12px;
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+
+.nav {
+    margin-left: auto;
+    gap: 10px
+    
+}
+.nav-logout {
+    display: inline;
+    margin-left: 6px
+}
+.user-welcome {
+    text-align: left;
+    margin: 20px 0 12px 20px;
+    /* aligned with logo on left */
+    color: var(--text);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+/* ===== type ===== */
+h1 {
+    font-size: 1.9rem;
+    margin: 24px 0 12px
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 20px 0 10px
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin: 16px 0 8px
+}
+
+p {
+    margin: 10px 0
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+/* ===== forms ===== */
+form {
+    margin: 16px 0
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted)
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+}
+textarea {
+    min-height: 120px
+}
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+/* ===== tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead th {
+    text-align: left;
+    padding: 10px;
+    background: color-mix(in srgb, var(--panel) 85%, var(--bg));
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border)
+}
+
+tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--panel) 96%, var(--bg))
+}
+
+tbody tr:hover {
+    background: color-mix(in srgb, var(--panel) 92%, var(--bg))
+}
+
+/* ===== footer ===== */
+.site-footer {
+    padding: 10px 0;
+    border-top: 2px solid var(--border);
+    color: var(--muted);
+    background: var(--panel);
+}
+.footer-text{
+    text-align: start;
+    margin-left: 10px;
+}
+/* homepage minimal */
+.page-title {
+    font-size: 3rem;
+    text-align: center;
+    margin: 24px 0 8px
+    
+}
+
+.lead {
+    color: var(--muted);
+    text-align: center;
+    /* margin-ce: auto; */
+    margin: 0 auto 18px;
+    max-width: 60ch
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 18px 0
+}
+
+.section-title {
+    font-size: 1.2rem;
+    margin: 14px 0 10px
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.list-item {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .04)
+}
+
+.list-item:last-child {
+    border-bottom: 0
+}
+
+.list-link {
+    color: var(--text);
+    text-decoration: none
+}
+
+.list-link:hover {
+    color: var(--accent);
+    text-decoration: underline
+}
+
+.muted {
+    color: var(--muted)
+}
+
+.btn {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Make all fields match the textarea background */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+textarea,
+select {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+/* Autofill overrides (include URL) */
+input[type="text"]:-webkit-autofill,
+input[type="email"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill,
+input[type="url"]:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--panel) inset !important;
+    -webkit-text-fill-color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* keep nav items on one line (if not already) */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.nav form {
+    margin: 0;
+}
+
+/* link-style logout button */
+.nav-logout-btn {
+    background: transparent;
+    border: 0;
+    color: var(--accent);
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+.nav-logout-btn:hover {
+    text-decoration: underline;
+}

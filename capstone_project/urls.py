@@ -21,7 +21,7 @@ from django.urls import path,include
 from main_app import views
 from main_app.views import SignUpView
 # from django.contrib.auth import views as auth_views
-# from main_app.views import LogoutView , SignUpView
+from main_app.views import LogoutView 
 
 
 
@@ -29,7 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main_app.urls')),
 
-    # path('auth/logout/', LogoutView.as_view(), name='logout'),   
+    # path('auth/logout/', LogoutView.as_view(), name='logout'), 
+          path("auth/logout/", LogoutView.as_view(next_page="login"), name="logout"),
     path("auth/", include("django.contrib.auth.urls")),
     path("auth/signup/", views.signup, name="signup"),
     # path('auth/signup/', SignUpView.as_view(), name='signup'),
