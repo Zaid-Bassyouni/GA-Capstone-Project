@@ -2,14 +2,28 @@
 {% block title %}<title>Home</title>{% endblock %}
 
 {% block content %}
-  <h1>Homepage</h1>
-  <p>This is just a smoke test.</p>
+<section class="home-hero">
+  <h1 class="page-title">Find the right influencer</h1>
 
-  <h3>Influencers</h3>
- <ul>
-  {% for p in influencers %}
-    <li><a href="{% url 'influencer_details' p.influencer_id %}">{{ p.display_name }}</a></li>
-  {% empty %}<li>No influencers yet.</li>{% endfor %}
-</ul>
+  <p class="lead">
+    Looking for the perfect voice to represent your brand?
+    Analyze reach, audience engagement, and performance to find a true fit.
+    Stop guessing, start connecting with influencers who deliver results.
+  </p>
 
+  <hr class="divider">
+
+  <h2 class="section-title">Top Influencers</h2>
+  <ul class="list">
+    {% for p in influencers %}
+      <li class="list-item">
+        <a class="list-link" href="{% url 'influencer_details' p.influencer_id %}">
+          {{ p.display_name }}
+        </a>
+      </li>
+    {% empty %}
+      <li class="list-item muted">No influencers yet.</li>
+    {% endfor %}
+  </ul>
+</section>
 {% endblock %}

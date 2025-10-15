@@ -2,7 +2,7 @@
 {% block title %}<title>All Influencers</title>{% endblock %}
 
 {% block content %}
-  <h1>🌍 All Influencers</h1>
+  <h1> All Influencers</h1>
   <p>Explore all registered influencer profiles below.</p>
 
   {% if profiles %}
@@ -26,9 +26,9 @@
             <td>{{ p.country }}</td>
             <td>
               {% if p.is_active %}
-                ✅ Active
+                 Active
               {% else %}
-                ❌ Inactive
+                 Inactive
               {% endif %}
               {% if not p.is_public %}
                 <br><small>(Private)</small>
@@ -48,5 +48,5 @@
   {% endif %}
 
   <hr>
-  <a href="{% url 'create_influencer' %}">➕ Create New Profile</a>
+  
 {% endblock %}

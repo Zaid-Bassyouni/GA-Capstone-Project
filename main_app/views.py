@@ -8,7 +8,7 @@ from django.contrib.auth.views import LogoutView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
+from django.http import HttpResponseForbidden
 
 
 class SignUpView(CreateView):
@@ -41,13 +41,36 @@ def signup(request):
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
 
+# def homepage(request):
+#     influencers = InfluencerProfile.objects.all()
+#     return render(request, 'homepage.html', {'influencers': influencers})
+
+
 def homepage(request):
-    influencers = InfluencerProfile.objects.all()
-    return render(request, 'homepage.html', {'influencers': influencers})
+    top3 = (
+        InfluencerProfile.objects
+        .filter(is_public=True, is_active=True)  
+        .order_by('-created_at')[:3]             
+    )
+    return render(request, 'homepage.html', {'influencers': top3})
 
 def profile_details(request, id):
     profile = get_object_or_404(InfluencerProfile, influencer_id=id)
     return render(request, 'influencers/influencer_details.html', {'profile': profile})
+
+@login_required
+def my_profile(request, id):
+    # Get the logged-in user's profile
+    profile = getattr(request.user, "influencer_profile", None)
+    if not profile:
+        # messages.info(request, "Please create your profile first.")
+        return redirect("create_influencer")
+
+    if profile.influencer_id != id:
+        return redirect("my-profile", id=profile.influencer_id)
+
+    # Show the profile page
+    return render(request, "influencers/my-profile.html", {"profile": profile})
 
 def influencer_list(request):
     profiles = InfluencerProfile.objects.all()
@@ -64,6 +87,7 @@ def create_influencer(request):
         form = InfluencerForm()
     return render(request, 'influencers/influencer_form.html', {'form': form})
 
+@login_required
 def update_influencer(request, id):
     influencer = get_object_or_404(InfluencerProfile, influencer_id=id)
     if request.method == 'POST':
@@ -74,7 +98,7 @@ def update_influencer(request, id):
     else:
         form = InfluencerForm(instance=influencer)
     return render(request, 'influencers/influencer_form.html', {'form': form})
-
+@login_required
 def delete_influencer(request, id):
     profile = get_object_or_404(InfluencerProfile, influencer_id=id)
     if request.method == 'POST':
