@@ -5,7 +5,9 @@ from .models import InfluencerProfile
 class InfluencerForm(forms.ModelForm):
     class Meta:
         model = InfluencerProfile
-        fields = ["display_name", "bio", "contact_email", "country", "is_public", "is_active"]
+        fields = ["display_name", "bio", "contact_email", "country", "is_public", "is_active",
+                  'instagram_url', 'tiktok_url', 'youtube_url', 'twitter_url', 'facebook_url',
+                  ]
 
     def save(self, commit=True):
         obj = super().save(commit=False)

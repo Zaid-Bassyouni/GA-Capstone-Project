@@ -7,10 +7,22 @@
   <p><strong>Country:</strong> {{ profile.country }}</p>
   <p><strong>Public:</strong> {{ profile.is_public }}</p>
   <p><strong>Active:</strong> {{ profile.is_active }}</p>
-  <p><strong>Bio:</strong><br>{{ profile.bio|linebreaks }}</p>
-  <p>
   
 </p>
+
+{% if profile.instagram_url or profile.tiktok_url or profile.youtube_url or profile.twitter_url or profile.facebook_url %}
+  <hr class="divider">
+  <section class="card">
+    <h2>Social Accounts</h2>
+    <ul>
+      {% if profile.instagram_url %}<li><a href="{{ profile.instagram_url }}">Instagram</a></li>{% endif %}
+      {% if profile.tiktok_url %}<li><a href="{{ profile.tiktok_url }}">TikTok</a></li>{% endif %}
+      {% if profile.youtube_url %}<li><a href="{{ profile.youtube_url }}">YouTube</a></li>{% endif %}
+      {% if profile.twitter_url %}<li><a href="{{ profile.twitter_url }}">Twitter/X</a></li>{% endif %}
+      {% if profile.facebook_url %}<li><a href="{{ profile.facebook_url }}">Facebook</a></li>{% endif %}
+    </ul>
+  </section>
+{% endif %}
 
  {% if profile.bio %}
     <hr class="divider">
@@ -19,5 +31,5 @@
       <p>{{ profile.bio|linebreaks }}</p>
     </section>
   {% endif %}
-  
+
 {% endblock %}

@@ -14,7 +14,7 @@ class InfluencerProfile(models.Model):
     related_name='influencer_profile',
     null=True, blank=True      # ← temporary
     )
-    
+
     display_name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=140 , unique=True,blank=True,null=True) #it should be generated Automaticlly
     bio = models.TextField(blank=True)
@@ -24,6 +24,11 @@ class InfluencerProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_public = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
+    instagram_url = models.URLField(blank=True)
+    tiktok_url    = models.URLField(blank=True)
+    youtube_url   = models.URLField(blank=True)
+    twitter_url   = models.URLField(blank=True)  
+    facebook_url  = models.URLField(blank=True)
 
 
     def __str__(self):
