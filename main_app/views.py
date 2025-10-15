@@ -94,7 +94,7 @@ def update_influencer(request, id):
         form = InfluencerForm(request.POST, instance=influencer)
         if form.is_valid():
             form.save()
-            return redirect('influencer_details', id=influencer.influencer_id)
+            return redirect('my_profile', id=influencer.influencer_id)
     else:
         form = InfluencerForm(instance=influencer)
     return render(request, 'influencers/influencer_form.html', {'form': form})
