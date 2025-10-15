@@ -11,4 +11,13 @@
   <p>
   
 </p>
+
+ {% if profile.bio %}
+    <hr class="divider">
+    <section class="card">
+      <h2>Bio</h2>
+      <p>{{ profile.bio|linebreaks }}</p>
+    </section>
+  {% endif %}
+  
 {% endblock %}
