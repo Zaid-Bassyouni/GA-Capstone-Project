@@ -6,7 +6,7 @@
   <p>This action cannot be undone.</p>
   <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
+    <button class="btn" type="submit">Yes, delete</button>
     <a href="{% url 'influencer_details' profile.influencer_id %}">Cancel</a>
   </form>
 {% endblock %}

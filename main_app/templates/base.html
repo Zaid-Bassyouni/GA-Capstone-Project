@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}?v=3">
 </head>
 
-<body class="theme-dark">
+<body >
 
     {% comment %} ===== Website Header ===== {% endcomment %}
     <header class="site-header">
@@ -29,9 +29,9 @@
     {% if user.is_authenticated %}
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" style="background:none;border:none;padding:0;color:blue;cursor:pointer;">
+            <a href="{% url 'login' %}">
                 Logout
-            </button>
+           </a> 
         </form>
     {% else %}
         <a href="{% url 'login' %}">Login</a> |
