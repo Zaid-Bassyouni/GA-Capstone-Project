@@ -1,40 +1,71 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {%block title%} <title></title> {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
-<body>
 
- {% comment %} <nav>
-  <a href="{% url 'homepage' %}">Homepage</a> |
-  <a href="{% url 'influencer_list' %}">All Influencers</a> |
-  <a href="{% url 'create_influencer' %}">Create Profile</a>
-</nav> {% endcomment %}
 
-    <nav>
-  <a href="{% url 'homepage' %}">Homepage</a> |
-  <a href="{% url 'influencer_list' %}">All Influencers</a> |
-  {% if user.is_authenticated %}
-    <a href="{% url 'create_influencer' %}">Create Profile</a> |
-    <form action="{% url 'logout' %}" method="post" style="display:inline;">
-      {% csrf_token %}
-      <button type="submit" style="background:none;border:none;padding:0;color:blue;cursor:pointer;">
-        Logout
-      </button>
-    </form>
+<body class="theme-dark">
+
+    {% comment %} Website Header {% endcomment %}
+
+    <header class ="site-header">
+        <div class="heder-container">
+            <a class="logo" href="{% url 'homepage' %}">Influencer Portal</a>
+             <nav class="nav">
+             
+{% if user.is_authenticated %}
+  {% if user.influencer_profile %}
+    <a href="{% url 'my_profile' user.influencer_profile.influencer_id %}">My Profile</a> |
   {% else %}
-    <a href="{% url 'login' %}">Login</a> |
-    <a href="{% url 'signup' %}">Sign up</a>
+    <a href="{% url 'create_influencer' %}">Create Profile</a> |
   {% endif %}
-</nav>
+{% endif %}
 
+                <a href="{% url 'influencer_list' %}">All Influencers</a> |
 
-    {%block content%}
-        {%endblock%}
+                  {% if user.is_authenticated %}
+                 
+                     <a href="{% url 'create_influencer' %}">Create Influencer Account </a> |
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                          {% csrf_token %}
+                  <button type="submit" style="background:none;border:none;padding:0;color:blue;cursor:pointer;">
+                      Logout
+                  </button>
+                </form>
+
+                
+                {% else %}
+                <a href="{% url 'login' %}">Login</a> |
+                <a href="{% url 'signup' %}">Sign up</a> 
+                {% endif %}
+                
+            </nav>
+        </div>
+    </header>
+    {% comment %} Main Content {% endcomment %}
+                  {% if user.is_authenticated %}
+
+    <h1 class="user-welcome"> <span class="nav-user">Welcome, {{ user.username }}!</span> </h1>
+                {%endif%}
+    <main class="container">
+        
+        {% block content %}  {% endblock %}
+
+    </main>
     
+    {% comment %} Website Footer {% endcomment %}
 
+   <footer class="site-footer">
+    <div >
+      <p class="footer-text">© {% now "Y" %} Influencer Portal</p>
+     </div>
+    </footer> 
     
-</body>
+  </body>
 </html>
