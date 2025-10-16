@@ -8,9 +8,17 @@
 
 ##  Screenshot / Logo
 > Replace with a logo or app screenshot.
+##  Home Page
+![Home Page](main_app/static/images/Home%20Page.png)
 
-![App Screenshot](<static/screenshots/home.png> "Home Page")
-<!-- Or: ![Logo](<static/logo.png> "Logo") -->
+##  Login Page
+![Login Page](main_app/static/images/login-user.png)
+
+##  Sign Up Page
+![Sign Up Page](main_app/static/images/sigup.png)
+
+##  All Influencers List
+![All Influencers List](main_app/static/images/All%20influencers%20list.png)
 
 ---
 
